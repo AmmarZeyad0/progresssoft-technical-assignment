@@ -29,3 +29,24 @@ PS:x:1001:1001::/home/PS:/bin/sh
 ## Status
 Pending verification of the current VM configuration.
 
+
+# Linux Task 3: Modifey the Root Password
+
+## Objective
+Edit the Root Password
+
+## Implementation
+The user had been created without Password
+
+## Verification
+
+```bash
+ammarz@ps-server:~$ sudo passwd root
+[sudo: authenticate] Password:          
+New password: 
+Retype new password: 
+passwd: password updated successfully
+```
+
+## Expected Result
+- The User had been successfully change the password 

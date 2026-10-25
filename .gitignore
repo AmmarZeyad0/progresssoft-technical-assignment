@@ -1,0 +1,6 @@
+.DS_Store
+.vagrant/
+*.war
+*.tar.gz
+*.box
+*.zip
