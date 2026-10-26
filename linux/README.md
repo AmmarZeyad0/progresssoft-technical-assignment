@@ -51,8 +51,6 @@ sudo ./sysinfo.sh
 
 **Result**
 
-**TODO:** run `sudo ./sysinfo.sh` on ps-server, save the screenshot as `screenshots/T1-Linux.png`, then delete this line.
-
 ![Task 1 output](screenshots/T1-Linux.png)
 
 ---
@@ -201,21 +199,7 @@ cc2ffaa5c82a540ab34d91889305f7bf6f51f677ab9ec0d5997ffc296c022ae9  /home/ammarz/s
 
 ![Task 6 output](screenshots/T6-Linux.png)
 
-**Other options**
-```bash
-# rsync over SSH
-rsync -avz -e "ssh -p 2222" test.txt ammarz@127.0.0.1:/home/ammarz/
-
-# GUI client (Cyberduck or FileZilla): SFTP, host 127.0.0.1, port 2222, user ammarz
-
-# Pull over HTTP: on my Mac, then on the VM
-python3 -m http.server 8000 --bind 127.0.0.1
-curl -fo ~/http-test.txt http://10.0.2.2:8000/test.txt
-```
-
 ---
-
-## Task 7: Linux in general
 
 ### Architecture
 Linux is split into two zones. **Kernel space** is where the kernel runs, with full access to the hardware: it schedules processes, manages memory, runs the network stack and talks to devices. **User space** is where everything else runs: the shell (Bash), commands like `ls` and `free`, and services like MySQL. Programs in user space ask the kernel for resources through **system calls**. On this server the kernel is `7.0.0-38-generic` running on an ARM64 CPU.

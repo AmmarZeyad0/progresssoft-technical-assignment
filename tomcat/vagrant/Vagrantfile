@@ -1,0 +1,25 @@
+# Vagrantfile: ProgressSoft assignment, Tomcat practice task 3
+# Ubuntu 24.04 VM with Java 8 and Tomcat 9; Tomcat's port 7070 reachable on the host at 9090.
+
+# Vagrant 2.4.9 on macOS 26.7+ reports every forwarded port as "already in use"
+# (hashicorp/vagrant#13845). This patch fixes the port check and changes nothing elsewhere.
+require_relative "port_check_patch"
+
+Vagrant.configure("2") do |config|
+  # Requirement 1: the input image
+  config.vm.box      = "bento/ubuntu-24.04"
+  config.vm.hostname = "ps-tomcat"
+
+  # Requirement 2: guest port 7070 -> host port 9090 (this machine only)
+  config.vm.network "forwarded_port", guest: 7070, host: 9090, host_ip: "127.0.0.1"
+
+  # Requirement 3: 2 GB of memory
+  config.vm.provider "virtualbox" do |vb|
+    vb.name   = "ps-tomcat"
+    vb.memory = 2048
+    vb.cpus   = 2
+  end
+
+  # Requirement 4: Java 8 and Tomcat 9, installed by a shell provisioner
+  config.vm.provision "shell", path: "provision/install-tomcat9.sh"
+end
